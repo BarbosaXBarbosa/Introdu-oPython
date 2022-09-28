@@ -4,6 +4,7 @@
 
 nome_alunos = []
 media_alunos = []  # lista das médias dos alunos
+aprovados = []
 media_total = 0  # acumuladora das notas
 contA = 0  # Contador de Aprovados
 quant = 3
@@ -13,13 +14,14 @@ while True:
     try:
         nome_alunos.append(input(f'Digite o nome do {i+1}º aluno: '))
         media_alunos.append(float(input(f'Digite a média do {nome_alunos[i]}: ')))
-        if 0 < media_alunos[i] > 10:
+        if 0 > media_alunos[i] or media_alunos[i] > 10:
             nome_alunos.pop(i)
             media_alunos.pop(i)
-            print('Valor inváildo! Digite um número entre 0 e 10')
+            print('Valor inválido! Digite um número entre 0 e 10')
         else:
             media_total += media_alunos[i]
             if media_alunos[i] >= 7:
+                aprovados.append(nome_alunos[i])
                 contA += 1
             i += 1
             if i == quant:
@@ -32,3 +34,4 @@ print('-' * 10 + 'Indicadores finais' + '-' * 10 + '\n')
 media_total = (media_total/len(nome_alunos))
 print(f'Média dos alunos: {media_total:.2f}')
 print(f'Quantidade de alunos aprovados: {contA}')
+print(aprovados)
