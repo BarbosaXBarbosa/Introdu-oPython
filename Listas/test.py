@@ -8,41 +8,33 @@
 nome_produtos = []
 preço_unitário = []
 quantidade_produto = []
+i = 0
 quant = 0
 
-while True:
-    try:
-        quant = int(input('Informe a quantidade dos produtos que você vai comprar: '))
-        if 0 > quant or quant > 50:
-            print('Excedeu o limite de volume de compras!')
-        else:
-            break
-    except Exception as err:
-        print('Erro! Quantidade inválida!')
-        print(err)
-
-i = 0
 
 while True:
     try:
         nome_produtos.append(input('Informe o nome do produto: '))
-        preço_unitário.append(float(input('Informe o preço deste produto: ')))
-        if 0 > preço_unitário[i] or preço_unitário[i] > 500:
-            preço_unitário.pop(i)
+        if nome_produtos[i] == '0':
             nome_produtos.pop(i)
-            print('Preço Inválido!')
+            print('Finalizando operação.')
+            break
         else:
-            quantidade_produto.append(int(input(f'Informe a quantidade que você deseja de {nome_produtos[i]}: ')))
-            if quantidade_produto[i] < 0 or quantidade_produto[i] > 20:
-                print('Quantidade Inválida de produtos!')
-            i += 1
-            if i == quant:
-                break
+            preço_unitário.append(float(input('Informe o preço deste produto: ')))
+            if 0 > preço_unitário[i] or preço_unitário[i] > 500:
+                preço_unitário.pop(i)
+                nome_produtos.pop(i)
+                print('Preço Inválido!')
+            else:
+                quantidade_produto.append(int(input(f'Informe a quantidade que você deseja de {nome_produtos[i]}: ')))
+                if quantidade_produto[i] < 0 or quantidade_produto[i] > 20:
+                    print('Quantidade Inválida de produtos!')
+                i += 1
+                quant += 1
     except Exception as e:
         nome_produtos.pop(i)
         print('Erro! Digite o valor corretamente.')
         print(e)
-
 print('-' * 10 + 'Lista final' + '-' * 10 + '\n')
 
 i = 0
