@@ -32,15 +32,24 @@ while True:
                 i += 1
                 quant += 1
     except Exception as e:
-        nome_produtos.pop(i)
-        print('Erro! Digite o valor corretamente.')
+        if len(nome_produtos) != len(preço_unitário):
+            print('Digite um preço válido!')
+            nome_produtos.pop(i)
+        elif len(preço_unitário) != len(quantidade_produto):
+            print('Digite uma quantidade válida')
+            nome_produtos.pop(i)
+            preço_unitário.pop(i)
         print(e)
 print('-' * 10 + 'Lista final' + '-' * 10 + '\n')
 
 i = 0
 
+total = 0
 while True:
-    print(f'{quantidade_produto[i]} - {nome_produtos[i]}(s) total: {quantidade_produto[i] * preço_unitário[i]}')
+    total = total + (quantidade_produto[i] * preço_unitário[i])
+    print(f'{quantidade_produto[i]} - {nome_produtos[i]}(s) custo: {quantidade_produto[i] * preço_unitário[i]}')
     i += 1
     if i == quant:
         break
+final = '-' * 10 + 'Total:' + f'{total:5.2f}'
+print(f'{final:>20}')
